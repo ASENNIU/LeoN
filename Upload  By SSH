@@ -1,0 +1,17 @@
+1.生成ssh秘钥，详情见google
+
+2.建立本地任意文件夹
+
+3.在此处git bash
+
+4.执行git init，将此文件夹变成可操控的本地仓库，并将想要上传的项目复制于此
+
+5.git add .(添加文件夹下所有内容到暂存区，可通过cd命令进入需要的文件再执行，此命令将项目添加到仓库)
+
+6.git commit -m "注释内容" 把项目提交到仓库
+
+7.ssh -T git@github.com  测试ssh连接
+
+8.git remote add origin https://github.com:ASENNIU/MachineLearning.git (ssh地址）  将本地与远程进行关联
+
+9.git push origin master（进行上传，若远端仓库已生成README，则会报错）(git pull --rebase origin master 将远端内容拉下，再上传）
