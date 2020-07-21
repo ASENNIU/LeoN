@@ -1,0 +1,31 @@
+1.function<void(int, int)> dfs = [&](int x, int pre) {} lambda函数的完整结构，头文件functional
+  []中表示以何种方式捕获父空间的变量，上式为引用捕获所有，=为传值
+  在函数中嵌入lambda表达式，使用父空间的变量，并且减少函数调用的时间
+  
+2.关于树的遍历与访问，由于无环及无向的特性，从根节点开始往叶节点递归遍历时，只需控制不会进入上一个节点
+
+3.对1、2给出例子
+  function<void(int, int)> dfs = [&](int x, int pre){
+      for(int p : G[x]){
+          if(p == pre) continue;
+              dfs(p, x);
+      }
+  };
+
+4.includes(a.begin(), a.end(), b.begin(), b.end()))  判断有序序列a是否是b的子集，若b为空，仍返回true。  <algorithm>
+  判断一个集合是否是另一个集合的子集时可以运用这种思想，对两个集合排序，设置两个指针，比较移动。
+
+5.三分算法，求凸函数的全局最低点
+  double getMinDistSum(vector<vector<int>>& positions) {
+      double ans_l, ans_r;
+      double l = 0, r = 100, mid, midr;
+      while(r - l > eps){
+          mid = (l + r) / 2;  midr = (mid + r) / 2;
+          ans_l = solve_y(positions, mid);
+          ans_r = solve_y(positions, midr);
+          if(ans_l > ans_r)
+              l = mid;
+          else r = midr;
+      }
+      return min(ans_l, ans_r);
+  }
