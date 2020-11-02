@@ -1,0 +1,35 @@
+1.对自顶向下与自底向上的认识
+  详情见LeetCode  139.  140.题
+  NO: 139 
+  给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。
+  说明：
+  拆分时可以重复使用字典中的单词。
+  你可以假设字典中没有重复的单词。
+  输入: s = "leetcode", wordDict = ["leet", "code"]
+  输出: true
+  解释: 返回 true 因为 "leetcode" 可以被拆分成 "leet code"。
+  
+  class Solution {
+  public:
+	    bool wordBreak(string s, vector<string>& wordDict) {
+        vector<bool> dp(s.size()+1, false);
+        unordered_set<string> m(wordDict.begin(), wordDict.end());
+        dp[0] = true;
+        //获取最长字符串长度
+        int maxWordLength = 0;
+        for (int i = 0; i < wordDict.size(); ++i){
+            maxWordLength = max(maxWordLength, (int)wordDict[i].size());
+        }
+        for (int i = 1; i <= s.size(); ++i){
+            for (int j = max(i-maxWordLength, 0); j < i; ++j){
+                if (dp[j] && m.find(s.substr(j, i-j)) != m.end()){
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.size()];
+	 }
+ };
+ 
+ 这里采用了自底向上的方法，理由是这个题只需要输出是否能够成功分割，而不需要输出所有的分割情况。
