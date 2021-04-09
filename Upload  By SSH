@@ -12,6 +12,6 @@
 
 7.ssh -T git@github.com  测试ssh连接
 
-8.git remote add origin https://github.com:ASENNIU/MachineLearning.git (ssh地址）  将本地与远程进行关联
+8.git remote add origin https://github.com:ASENNIU/~（这里是项目地址，需提前在github上创建）  将本地与远程进行关联
 
 9.git push origin master（进行上传，若远端仓库已生成README，则会报错）(git pull --rebase origin master 将远端内容拉下，再上传）
